@@ -1,0 +1,20 @@
+.button-principal {
+    width: fit-content;
+    min-width: 136px;
+    padding: 11px 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var( --background-95);
+    color: var(--principal);
+    border-radius: 10px;
+    border: 2px solid var(--principal);
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.button-principal:hover {
+    background-color: var( --principal);
+    color: var(--background-95);
+    transition-duration: 200ms;
+}

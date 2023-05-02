@@ -1,0 +1,207 @@
+.menu-area .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7.04vh;
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-area .svg {
+    order: 1;
+}
+
+.menu-area .nav-title {
+    order: 2;
+}
+
+.menu-area .extension {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 7.04vh;
+    width: 100%;
+    height: 7vh;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+    transition-duration: 200ms;
+    color: var(--white);
+}
+
+.menu-area .down {
+    height: 64.79vh;
+    transition-duration: 200ms;
+}
+
+.menu-area .extension h2 {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.menu-area .button {
+    margin-top: 24px;
+}
+
+.menu-area .extension ul {
+    width: 85%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    overflow-y: scroll;
+}
+
+.menu-area .extension ul::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-area .extension ul::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+
+.menu-area .extension ul::-webkit-scrollbar-thumb {
+    background: var(--principal);
+    border-radius: 2px;
+}
+
+.menu-area .extension li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.1px solid rgb(255,255,255,0.2);
+}
+
+.menu-area .extension li:last-child {
+    border: none;
+}
+
+
+.menu-area .extension li svg {
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.menu-area .extension li span {
+    font-weight: 300;
+    transition-duration: 300ms;
+}
+
+.menu-area .extension li span:hover {
+    font-weight: 700;
+}
+
+.menu-area .navbar svg {
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+.menu-area .navbar span {
+    margin-right: 16px;
+    color: var(--white);
+}
+
+.menu-area .displayed {
+    opacity: 1;
+    transition-duration: 300ms;
+}
+
+.menu-area .hidden {
+    opacity: 0;
+    transition-duration: 300ms;
+}
+
+.menu-area .rotate-clockwise {
+    transform-origin: 4px 6px;
+    transform: rotate(45deg);
+    transition-duration: 300ms;
+}
+
+.menu-area .rotate-return {
+    transform-origin: 4px 6px;
+    transform: rotate(0deg);
+    transition-duration: 300ms;
+}
+
+.menu-area .alternative-title {
+    display: none;
+}
+
+.menu-area .rotate-counter-clockwise {
+    transform-origin: 4px 18px;
+    transform: rotate(-45deg);
+    transition-duration: 300ms;
+}
+
+.menu-area .rotate-counter-return {
+    transform-origin: 4px 18px;
+    transform: rotate(0deg);
+    transition-duration: 300ms;
+}
+
+@media screen and (min-width: 750px) {
+    
+    .menu-area .alternative-title {
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .menu-area .navbar {
+        display: none;
+    }
+
+    .menu-area {
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 30%;
+        height: 100vh;
+    }
+
+    .menu-area .extension {
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+    }
+
+    .menu-area .extension ul {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        list-style: none;
+    }
+
+    .menu-area .extension li {
+        margin-right: 0;
+        width: 100%;
+        min-width: 0;
+        height: 10vh;
+        cursor: pointer;
+        transition-duration: 300ms;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0.1px solid rgb(255,255,255,0.2);
+    }
+
+    .menu-area .extension li:last-child {
+        border: none;
+    }
+}

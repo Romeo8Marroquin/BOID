@@ -1,0 +1,129 @@
+.chat-section {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-95);
+}
+
+.chat-section .chat {
+    padding-top: 9vh;
+    width: 100%;
+    height: 88.75vh;
+    overflow-y: scroll;
+    margin: 0 auto 0;
+    border-radius: 8px;
+}
+
+.chat-section .chat::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chat-section .chat::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+
+.chat-section .chat::-webkit-scrollbar-thumb {
+    background: var(--principal);
+    border-radius: 2px;
+}
+
+.chat-section .chat div {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    margin: 0 auto 0;
+}
+
+.chat-section .chat .reply {
+    justify-content: flex-start;
+}
+
+.chat-section .chat .message {
+    justify-content: flex-end;
+}
+
+.chat-section .chat div p {
+    display: inline-block;
+    width: 75%;
+    border-radius: 8px;
+    color: var(--white);
+    margin-bottom: 16px;
+    padding: 8px;
+}
+
+.chat-section .chat .replym {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.chat-section .chat .messagem {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Input section */
+
+.input-area {
+    width: 100%;
+    height: calc(100vh - 88.75vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-area form {
+    width: 100%;
+    height: 100%;
+}
+
+
+.input-area .typing {
+    width: 92%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-area .typing input {
+    border: none;
+    width: 85%;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 0;
+}
+
+.input-area .typing svg {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+@media screen and (min-width: 750px) {
+    .chat-section {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--background-95);
+    }
+
+    .chat-section .messages-area {
+        width: 70%;
+        height: 100vh;
+    }
+
+    .chat-section .chat {
+        width: 100%;
+        padding-top: 24px;
+    }
+    
+    .chat-section .chat div p {
+        width: 48%;
+    }
+
+    .input-area form {
+        max-width: unset;
+    }
+    
+    .input-area .typing {
+        width: 90%;
+        height: 55%;
+    }
+}

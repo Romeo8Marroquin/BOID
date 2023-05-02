@@ -1,0 +1,45 @@
+.banner {
+    width: 100%;
+    height: calc(100vh - 7vh);
+    background-image: url('../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    left:0;
+    bottom: 0;
+    filter: blur(5px);
+}
+
+.shadow {
+    width: 100%;
+    height: calc(100vh - 7vh);
+    position: absolute;
+    left:0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shadow .content {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+}
+
+.content > span:nth-child(1) {
+    margin-bottom: 5.63vh;
+}
+
+.content > span:nth-child(3) {
+    margin-top: 2.82vh;
+    margin-bottom: 2.82vh;
+}
+
+.content > span:nth-child(5) {
+    margin-top: 28.17vh;
+}

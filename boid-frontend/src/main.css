@@ -1,0 +1,66 @@
+:root {
+  --white: #F0F0F0;
+  --pure-white: #FFFFFF;
+  --black: #160014;
+  --pure-black: #000000;
+  --principal: #FF00C7;
+  --background-95: rgba(18, 0, 16, 0.95);
+  --dark-gray: #2E112B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.font-subtitle {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -2%;
+}
+
+.font-title {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -5%;
+}
+
+.font-text {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: -3%;
+}
+
+.font-small-text {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  letter-spacing: -3%;
+}
+
+@media screen and (min-width: 768px) {
+
+  .font-subtitle {
+    font-size: 2.4rem;
+  }
+
+  .font-title {
+    font-size: 3.2rem;
+  }
+
+  .font-text {
+    font-size: 1.6rem;
+  }
+
+  .font-small-text {
+    font-size: 1.4rem;
+  }
+}

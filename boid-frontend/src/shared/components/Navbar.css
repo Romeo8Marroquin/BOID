@@ -1,0 +1,167 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7.04vh;
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.svg {
+    order: 1;
+}
+
+.nav-title {
+    order: 2;
+}
+
+.extension {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 7.04vh;
+    width: 100%;
+    height: 7vh;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    transition-duration: 200ms;
+    color: var(--white);
+}
+
+.down {
+    height: 25vh;
+    transition-duration: 200ms;
+}
+
+.extension ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+}
+
+.extension li {
+    width: fit-content;
+    min-width: 42.5vw;
+    text-align: center;
+    line-height: 8vh;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.extension li:hover {
+    font-weight: 700;
+}
+
+.extension li:not(:last-child) {
+    border-bottom: 1px solid var(--white);
+}
+
+.navbar svg {
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+.navbar span {
+    margin-right: 16px;
+    color: var(--white);
+}
+
+.displayed {
+    opacity: 1;
+    transition-duration: 300ms;
+}
+
+.hidden {
+    opacity: 0;
+    transition-duration: 300ms;
+}
+
+.rotate-clockwise {
+    transform-origin: 4px 6px;
+    transform: rotate(45deg);
+    transition-duration: 300ms;
+}
+
+.rotate-return {
+    transform-origin: 4px 6px;
+    transform: rotate(0deg);
+    transition-duration: 300ms;
+}
+
+.rotate-counter-clockwise {
+    transform-origin: 4px 18px;
+    transform: rotate(-45deg);
+    transition-duration: 300ms;
+}
+
+.rotate-counter-return {
+    transform-origin: 4px 18px;
+    transform: rotate(0deg);
+    transition-duration: 300ms;
+}
+
+@media screen and (min-width: 750px) {
+    
+    .navbar {
+        height: 10vh;
+    }
+
+    .extension {
+        position: relative;
+        top: 0;
+        float: right;
+        padding: 0;
+        width: fit-content;
+        height: 10vh;
+        background-color: var(--black);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--white);
+        z-index: 1;
+    }
+
+    .svg {
+        display: none;
+        order: 2;
+    }
+    
+    .nav-title {
+        order: 1;
+        margin-left: 32px;
+    }
+
+    .extension ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style: none;
+    }
+
+    .extension li {
+        margin-right: 32px;
+        width: fit-content;
+        min-width: 0;
+        text-align: center;
+        height: 10vh;
+        cursor: pointer;
+        transition-duration: 300ms;
+        display: flex;
+        align-items: center;
+    }
+
+    .extension li:not(:last-child) {
+        border: none;
+    }
+
+    .extension li:hover {
+        font-weight: 700;
+    }
+}
