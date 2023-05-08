@@ -1,0 +1,15 @@
+{
+  "name": "boid-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "invoke": "serverless invoke local -f register",
+    "deploy": "serverless deploy --stage dev --verbose",
+    "remove": "serverless remove -s dev -r us-east-2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "mongoose": "^7.1.0"
+  }
+}

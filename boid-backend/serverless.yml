@@ -1,0 +1,28 @@
+service: boid-backend
+
+useDotenv: true
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  profile: boid-user
+  region: us-east-2
+  apiGateway:
+    apiKeys:
+      - name: 'boid-api-key'
+        value: 'MQ3sGdC@82Jmw*TX9e-P'
+
+functions:
+  register:
+    handler: handler.register
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      MONGODB_DBNAME: ${env:MONGODB_DBNAME}
+    events:
+      - http:
+          method: post
+          path: /register
+          private: true
