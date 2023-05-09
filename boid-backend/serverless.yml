@@ -20,9 +20,79 @@ functions:
     handler: handler.register
     environment:
       MONGODB_URI: ${env:MONGODB_URI}
-      MONGODB_DBNAME: ${env:MONGODB_DBNAME}
+      BCRYPT_SALT: ${env:BCRYPT_SALT}
     events:
       - http:
           method: post
           path: /register
+          private: true
+  login:
+    handler: handler.login
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: post
+          path: /login
+          private: true
+  verify:
+    handler: handler.verify
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: get
+          path: /verify
+          private: true
+  request:
+    handler: handler.request
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: post
+          path: /request
+          private: true
+  createConversation:
+    handler: handler.createConversation
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: post
+          path: /conversation
+          private: true
+  deleteConversation:
+    handler: handler.deleteConversation
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: delete
+          path: /conversation
+          private: true
+  getConversations:
+    handler: handler.getConversations
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: get
+          path: /conversations
+          private: true
+  getRequests:
+    handler: handler.getRequests
+    environment:
+      MONGODB_URI: ${env:MONGODB_URI}
+      SECRET_JWT: ${env:SECRET_JWT}
+    events:
+      - http:
+          method: get
+          path: /requests
           private: true

@@ -4,6 +4,9 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
+# local env files
 .env.dev
 .env.prod
 .env
+boid-keys.js
