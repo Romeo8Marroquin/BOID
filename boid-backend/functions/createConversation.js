@@ -6,6 +6,10 @@ module.exports = async ({headers, body}) => {
 
     if (!Authorization) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -13,6 +17,10 @@ module.exports = async ({headers, body}) => {
 
     if (!isJwtValid) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -20,6 +28,10 @@ module.exports = async ({headers, body}) => {
 
     if (!title) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Los parámetros no son válidos'})
     }
 
@@ -35,11 +47,19 @@ module.exports = async ({headers, body}) => {
 
     if (!saved) return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'No se pudo crear la conversación'})
     }
 
     return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: true, message: 'Conversación creada'})
     }
 };

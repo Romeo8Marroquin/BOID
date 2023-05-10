@@ -2,6 +2,7 @@ import { useState } from "react"
 import './LoginPage.css'
 import { Button } from "../../shared/components/Button";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/AuthHook";
 
 const FIELDS = {
   USER: 'user',
@@ -13,6 +14,8 @@ export const LoginPage = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('-');
+
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -39,10 +42,16 @@ export const LoginPage = () => {
     navigate('/register');
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (user === '' || password === '') {
       setError('Todos los campos son obligatorios');
       return;
+    }
+
+    const { data } = await login(user, password);
+    
+    if (!data.ok) {
+      setError(data.message);
     }
   }
 

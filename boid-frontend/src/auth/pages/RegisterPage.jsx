@@ -2,6 +2,7 @@ import { useState } from "react"
 import './RegisterPage.css'
 import { Button } from "../../shared/components/Button";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/AuthHook";
 
 const FIELDS = {
   USER: 'user',
@@ -17,7 +18,9 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [error, setError] = useState('-');
-  const [terms, setTerms] = useState(false)
+  const [terms, setTerms] = useState(false);
+  
+  const { register } = useAuth();
 
   const navigate = useNavigate();
 
@@ -55,10 +58,39 @@ export const RegisterPage = () => {
     navigate('/login');
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+
     if (user === '' || email === '' || password === '' || confirm === '') {
       setError('Todos los campos son obligatorios');
       return;
+    }
+
+    if (password !== confirm) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
+    if (!terms) {
+      setError('Se deben aceptar los términos y condiciones');
+      return;
+    }
+
+    if (email.split('@').length !== 2 || email.split('.').length !== 2) {
+      setError('El correo electrónico no es válido');
+      return;
+    }
+
+    if (user.split('@').length > 1) {
+      setError('El nombre de usuario no es válido');
+      return;
+    }
+
+    const { data } = await register(email, password, user);
+    
+    if (data.ok) {
+      navigate('/login');
+    } else {
+      setError(data.message);
     }
   }
 

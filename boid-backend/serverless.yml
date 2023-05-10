@@ -26,6 +26,7 @@ functions:
           method: post
           path: /register
           private: true
+          cors: true
   login:
     handler: handler.login
     environment:
@@ -36,6 +37,7 @@ functions:
           method: post
           path: /login
           private: true
+          cors: true
   verify:
     handler: handler.verify
     environment:
@@ -46,6 +48,7 @@ functions:
           method: get
           path: /verify
           private: true
+          cors: true
   request:
     handler: handler.request
     environment:
@@ -56,6 +59,7 @@ functions:
           method: post
           path: /request
           private: true
+          cors: true
   createConversation:
     handler: handler.createConversation
     environment:
@@ -66,6 +70,7 @@ functions:
           method: post
           path: /conversation
           private: true
+          cors: true
   deleteConversation:
     handler: handler.deleteConversation
     environment:
@@ -76,6 +81,7 @@ functions:
           method: delete
           path: /conversation
           private: true
+          cors: true
   getConversations:
     handler: handler.getConversations
     environment:
@@ -86,6 +92,7 @@ functions:
           method: get
           path: /conversations
           private: true
+          cors: true
   getRequests:
     handler: handler.getRequests
     environment:
@@ -96,3 +103,16 @@ functions:
           method: get
           path: /requests
           private: true
+          cors: true
+          
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'

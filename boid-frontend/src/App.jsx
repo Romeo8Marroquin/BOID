@@ -1,13 +1,14 @@
 import { AuthContext } from './auth/context/AuthContext'
 import { AppRouter } from './router/AppRouter'
-import { AuthReducer } from './auth/hooks/AuthHook';
+import { useState } from 'react';
 
 function App() {
 
-  const state = AuthReducer();
+  const [logged, setLogged] = useState(false);
+  const [username, setUsername] = useState('');
   
   return (
-    <AuthContext.Provider value={state}>
+    <AuthContext.Provider value={{logged, setLogged, username, setUsername}}>
       <AppRouter />
     </AuthContext.Provider>
   )

@@ -7,6 +7,10 @@ module.exports = async ({headers, queryStringParameters}) => {
 
     if (!Authorization) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -14,6 +18,10 @@ module.exports = async ({headers, queryStringParameters}) => {
 
     if (!isJwtValid) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -21,6 +29,10 @@ module.exports = async ({headers, queryStringParameters}) => {
 
     if (!id) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Los parámetros no son válidos'})
     }
 
@@ -30,11 +42,19 @@ module.exports = async ({headers, queryStringParameters}) => {
     
         if (!verifyConf) return {
             statusCode: 404,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'Conversación no encontrada'})
         }
 
         if (verifyConf.user.toString() !== isJwtValid.id) return {
             statusCode: 401,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
         }
     
@@ -43,12 +63,20 @@ module.exports = async ({headers, queryStringParameters}) => {
     
         return {
             statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: true, message: 'Conversación eliminada'})
         }
     } catch (error) {
         console.log(error);
         return {
             statusCode: 500,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'Error al eliminar la conversación'})
         }
     }

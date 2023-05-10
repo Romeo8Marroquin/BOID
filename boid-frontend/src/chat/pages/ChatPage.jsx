@@ -1,60 +1,38 @@
+import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import './ChatPage.css'
 import { ChatMenu } from '../components/ChatMenu'
-
-const chat = [
-  {
-    id: 'abc123',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: true
-  },
-  {
-    id: 'abc124',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: false
-  },
-  {
-    id: 'abc1232',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: true
-  },
-  {
-    id: 'abc1242',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: false
-  },
-  {
-    id: 'abc1233',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: true
-  },
-  {
-    id: 'abc1243',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: false
-  },
-  {
-    id: 'abc1234',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: true
-  },
-  {
-    id: 'abc1244',
-    message: 'Texto de prueba para realizar el diseño de la interfaz en el chat, este diseño está sujeto a posibles cambios.',
-    isReply: false
-  },
-]
+import { chatHook } from '../hooks/ChatHook'
 
 export const ChatPage = () => {
 
   const [activeConversation, setActiveConversation] = useState(undefined);
+  const [messages, setMessages] = useState([])
+  const [currentMessage, setCurrentMessage] = useState('')
 
   const scrollable = useRef()
 
+  const { getMessages, sendMessage } = chatHook();
+
+  useEffect(() => {
+    if (!activeConversation) return;
+    getMessages(activeConversation.id).then(({data}) => {
+      setMessages(data.conversations);
+    });
+  }, [activeConversation])
+
   useEffect(() => {
     scrollable.current.scrollTop = scrollable.current.scrollHeight
-  }, [])
-  
+  }, [messages])
+
+  const onSubmitRequest = async (e) => {
+    e?.preventDefault();
+    await sendMessage(activeConversation.id, currentMessage)
+    setCurrentMessage('');
+    getMessages(activeConversation.id).then(({data}) => {
+      setMessages(data.conversations);
+    });
+  }
 
   return (
     <section className="chat-section">
@@ -63,20 +41,25 @@ export const ChatPage = () => {
       <section className='messages-area'>
         <div className="chat" ref={scrollable}>
           {
-            chat.map((message, i) => (
-              <div className={`${message.isReply ? 'reply' : 'message'}`} key={message.id}>
-                <p className={message.isReply ? 'font-text replym' : 'font-text messagem'}>{message.message}</p>
-              </div>
+            messages.map((message) => (
+              <React.Fragment key={message.id}>
+                <div className="message">
+                  <p className='font-text messagem'>{message.request}</p>
+                </div>
+                <div className="reply">
+                  <p className='font-text replym'>{message.response}</p>
+                </div>
+              </React.Fragment>
             ))
           }
         </div>
         <div className='input-area'>
-          <form>
+          <form onSubmit={onSubmitRequest}>
             <div className="typing">
-              <input className='form-text' type="text" placeholder='Ingresar consulta' />
+              <input value={currentMessage} onChange={e => setCurrentMessage(e.target.value)} className='form-text' type="text" placeholder='Ingresar consulta' readOnly={!activeConversation} />
 
-              <svg width="25" height="33" viewBox="0 0 25 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 8L17 16.5L8 25" stroke="#F0F0F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg onClick={onSubmitRequest} width="25" height="33" viewBox="0 0 25 33" fill="none">
+                <path d="M8 8L17 16.5L8 25" stroke="#F0F0F0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
           </form>

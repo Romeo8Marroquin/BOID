@@ -1,29 +1,64 @@
-import { useState } from "react"
+import { useContext } from "react";
+import { boidApi } from "../../shared/boidApi";
+import { AuthContext } from "../context/AuthContext";
+import axios from 'axios'
 
-export const AuthReducer = () => {
+export const useAuth = () => {
 
-    const [logged, setLogged] = useState(true);
-    const [username, setUsername] = useState('');
+  const { logged, setLogged, username, setUsername } = useContext(AuthContext);
 
-    const login = (email, password) => {
-        //TODO: Llamar a la api
+    const login = async (username, password) => {
+      const { data } = await boidApi.post('/login', {
+        username,
+        password,
+      }).catch(() => ({
+        data: {
+          ok: false,
+          message: 'Error al ingresar, intente de nuevo'
+        }
+      }));
+
+      if (data.ok) {
         setLogged(true);
-        setUsername('Prueba');
+        setUsername(data.username);
+        localStorage.setItem('token', "Bearer " + data.token);
+        axios.defaults.headers.common['Authorization'] = "Bearer " + data.token;
+      }
+      return {data};
+    }
+
+    const verify = async () => {
+      const { data } = await boidApi.get('/verify', {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      }).catch(() => ({data: {ok: false}}));
+
+      if (data.ok) {
+        setLogged(true);
+        setUsername(data.username);
+        localStorage.setItem('token', "Bearer " + data.token);
+      }
     }
 
     const logout = () => {
-        //TODO: Llamar a la api
         setLogged(false);
-        setUsername({});
+        setUsername('');
+        localStorage.removeItem('token');
     }
 
-    const register = (email, password, username) => {
-        //TODO: llamar a la api
-        setLogged(true);
-        setUsername(username);
-    }
+    const register = (email, password, username) => boidApi.post('/register', {
+      username,
+      email,
+      password,
+    }).catch(() => ({
+      data: {
+        ok: false,
+        message: 'Error al registrar el usuario'
+      }
+    }));
 
   return {
-    logged, username, login, logout, register
+    logged, username, login, verify, logout, register
   }
 }

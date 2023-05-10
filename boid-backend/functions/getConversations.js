@@ -5,11 +5,24 @@ const Conversation = require('../models/Conversation');
 module.exports = async ({headers}) => {
 
   const { Authorization } = headers;
+  
+  if (!Authorization) return {
+      statusCode: 401,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+      body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
+  }
     
   const isJwtValid = verifyJwt(Authorization);
   if (!isJwtValid) return {
     statusCode: 401,
-    body: JSON.stringify({ok: false, message: 'Token no válido'})
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
+    body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
   }
 
   try {
@@ -24,6 +37,10 @@ module.exports = async ({headers}) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify({
         ok: true, 
         message: 'Conversaciones encontradas',
@@ -34,6 +51,10 @@ module.exports = async ({headers}) => {
     console.log(error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify({ok: false, message: 'Error al obtener las conversaciones'})
     }
   }

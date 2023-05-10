@@ -8,6 +8,10 @@ module.exports = async ({body}) => {
   
     if (!username || !password) return {
       statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify({ok: false, message: 'Los parámetros no son válidos'})
     }
   
@@ -21,6 +25,10 @@ module.exports = async ({body}) => {
   
       if (users.length === 0) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Error en el inicio de sesión'})
       }
   
@@ -29,6 +37,10 @@ module.exports = async ({body}) => {
   
       if (!verify) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Error en el inicio de sesión'})
       }
 
@@ -45,6 +57,10 @@ module.exports = async ({body}) => {
   
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: true, message: 'Inicio de sesión correcto', username: usernameRegistry, token})
       }
       

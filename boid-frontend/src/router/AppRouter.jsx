@@ -4,8 +4,17 @@ import { LoginPage, RegisterPage } from "../auth"
 import { HomePage } from "../shared/pages/HomePage"
 import { PrivateRoute } from "./PrivateRoute"
 import { ChatPage } from "../chat/pages/ChatPage"
+import { useAuth } from "../auth/hooks/AuthHook"
+import { useEffect } from "react"
 
 export const AppRouter = () => {
+
+    const { verify } = useAuth();
+
+    useEffect(() => {
+        verify();
+    }, [])
+    
   return (
     <>
         <Routes>

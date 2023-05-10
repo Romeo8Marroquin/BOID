@@ -6,6 +6,10 @@ module.exports = async ({body}) => {
 
     if (!username || !email || !password) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Los parámetros no son válidos'})
     }
 
@@ -14,6 +18,10 @@ module.exports = async ({body}) => {
 
         if (users.length > 0) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'No se pudo registrar el usuario'})
         }
 
@@ -21,6 +29,10 @@ module.exports = async ({body}) => {
 
         if (users.length > 0) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'No se pudo registrar el usuario'})
         }
 
@@ -38,11 +50,19 @@ module.exports = async ({body}) => {
         if (saved) {
         return {
             statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: true, message: 'Usuario registrado correctamente'})
         }
         } else {
         return {
             statusCode: 400,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'No se pudo registrar el usuario'})
         }
         }

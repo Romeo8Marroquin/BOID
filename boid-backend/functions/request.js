@@ -8,6 +8,10 @@ module.exports = async ({headers, body}) => {
 
     if (!Authorization) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -15,6 +19,10 @@ module.exports = async ({headers, body}) => {
 
     if (!isJwtValid) return {
         statusCode: 401,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Autenticación no válida'})
     }
 
@@ -22,6 +30,10 @@ module.exports = async ({headers, body}) => {
 
     if (!conversation || !request) return {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({ok: false, message: 'Los parámetros no son válidos'})
     }
 
@@ -31,6 +43,10 @@ module.exports = async ({headers, body}) => {
 
         if (!activeConversation) return {
             statusCode: 404,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'Conversación no encontrada'})
         }
 
@@ -75,11 +91,19 @@ module.exports = async ({headers, body}) => {
 
         if (!saved) return {
             statusCode: 500,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'No se pudo crear la request'})
         }
 
         return {
             statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: true, message: 'Request creada'})
         }
         
@@ -87,6 +111,10 @@ module.exports = async ({headers, body}) => {
         console.log(error);
         return {
             statusCode: 500,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: JSON.stringify({ok: false, message: 'Error al crear la solicitud'})
         }
     }
